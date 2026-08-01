@@ -505,6 +505,14 @@ Students ko ye bhi samjhana hai ki chart banana final goal nahi hota. Chart se i
 
 Seaborn aur Matplotlib ka relation bhi clear karna zaroori hai. Seaborn chart create karta hai, Matplotlib chart ko title, labels, size, and display control deta hai. Isliye practical code me `sns` aur `plt` dono often saath me dikhte hain. Beginner ko confuse nahi hona chahiye: `sns` chart banane ke liye, `plt` chart ko polish/display karne ke liye.
 
+## Kab Use Hota Hai
+
+Seaborn tab use hota hai jab hume data ko visually samajhna ho. Agar dataset me numeric columns hain aur hume distribution, comparison, relationship, ya correlation dekhna hai, Seaborn helpful hota hai. EDA phase me Seaborn sabse zyada use hota hai because model banane se pehle hume data ka behavior samajhna hota hai.
+
+Seaborn ko tab choose karo jab Pandas DataFrame already available ho aur aap clean, readable charts quickly banana chahte ho. Example: sales dataset me category-wise revenue compare karna ho, student dataset me marks distribution dekhna ho, house price dataset me area vs price relation dekhna ho, ya restaurant dataset me bill vs tip relation dekhna ho.
+
+Seaborn ka use presentation/report ke liye bhi hota hai, kyunki charts default style me clean dikhte hain. Lekin agar chart ka very custom design banana ho, advanced layout control chahiye ho, ya publication-level fine tuning karni ho, tab Matplotlib ke direct controls bhi use kar sakte hain. Simple rule: quick data understanding ke liye Seaborn, deep customization ke liye Matplotlib plus Seaborn.
+
 ## Practical Code
 
 ```python
@@ -585,6 +593,18 @@ Histogram me `bins` important parameter hai. Bins ka matlab data ko kitne interv
 Scatter plot two numeric columns ke relation ko show karta hai. Har dot ek row/record represent karta hai. X-axis par ek numeric column hota hai aur Y-axis par dusra numeric column. Agar dots upward direction me ja rahe hain, positive relationship ho sakta hai. Agar dots downward direction me ja rahe hain, negative relationship ho sakta hai. Agar dots randomly spread hain, relation weak ho sakta hai.
 
 Scatter plot outliers identify karne me bhi helpful hota hai. Outlier ka matlab aisi value jo normal pattern se bahut alag ho. Example: total bill low hai but tip extremely high hai, to woh unusual point ho sakta hai. Real ML projects me scatter plot se feature-target relation samajhne me help milti hai before regression model building.
+
+## Kab Use Hota Hai
+
+Line chart tab use hota hai jab data me sequence/order important ho. Agar X-axis time, day, month, year, age, study hours, ya ordered steps represent karta hai, line chart useful hota hai. Example: month-wise sales, day-wise temperature, year-wise house price, ya study hours ke saath average marks ka trend.
+
+Bar chart tab use hota hai jab categories compare karni ho. Agar question hai “kaunsa group sabse high hai?” ya “kis category ka average/total zyada hai?”, bar chart best choice hota hai. Example: day-wise average bill, city-wise sales, subject-wise average marks, product-wise revenue.
+
+Histogram tab use hota hai jab ek numeric column ka spread samajhna ho. Agar question hai “values mostly kis range me hain?”, histogram use karo. Example: salary distribution, house price distribution, total bill distribution, age distribution, marks distribution. Histogram se common range, skewness, and outliers ka idea milta hai.
+
+Scatter plot tab use hota hai jab two numeric columns ke beech relation check karna ho. Agar question hai “X badhne par Y badhta hai kya?”, scatter plot use karo. Example: total bill vs tip, living area vs house price, study hours vs marks, advertising spend vs sales. Regression model banane se pehle scatter plot dekhna very useful habit hai.
+
+Simple selection rule: trend ke liye line chart, comparison ke liye bar chart, distribution ke liye histogram, relationship ke liye scatter plot.
 
 ## Practical Code
 
@@ -674,6 +694,16 @@ Heatmap correlation matrix ko colors me convert karta hai. Strong positive relat
 
 Machine learning me correlation feature selection ka first checkpoint ho sakta hai. Agar feature target se strongly related hai, model usse useful signal le sakta hai. Agar two features ek dusre se bahut highly correlated hain, to kabhi-kabhi multicollinearity issue aa sakta hai in linear models. Beginner level par bas itna samjhana enough hai ki correlation hume useful and repeated information ka idea deti hai.
 
+## Kab Use Hota Hai
+
+Correlation matrix tab use hoti hai jab dataset me multiple numeric columns hon aur hume quickly check karna ho ki kaunse columns ek dusre se related hain. Agar only two numeric columns hain, scatter plot enough ho sakta hai. Lekin agar 5 ya 10 numeric columns hain, correlation matrix fast overview deti hai.
+
+Feature selection ke time correlation useful hoti hai. Agar target `SalePrice` hai aur kisi feature ka `SalePrice` se high positive correlation hai, to woh feature model ke liye useful signal ho sakta hai. Agar feature ka target se relation almost zero hai, to ho sakta hai woh feature less useful ho. Lekin final decision hamesha model performance and domain knowledge ke saath lena chahiye.
+
+Correlation matrix EDA me bhi use hoti hai. Isse analyst ko data ke hidden relationships ka clue milta hai. Example: total bill aur tip related hain kya, house area aur price related hain kya, study hours aur marks related hain kya. Heatmap ke saath correlation matrix use karne se relation visually easy ho jata hai.
+
+Correlation matrix tab avoid ya carefully use karo jab columns non-numeric hon, relationship non-linear ho, ya data me extreme outliers hon. Correlation linear relation ko measure karti hai, isliye har type ke relationship ko perfectly capture nahi karti.
+
 ## Practical Code
 
 ```python
@@ -747,6 +777,16 @@ EDA ka first step data preview hota hai. `head()` se first rows dekhte hain. `sh
 EDA ka second step patterns find karna hota hai. Histogram se numeric distribution dekhte hain. Bar chart se categories compare karte hain. Scatter plot se relationships dekhte hain. Correlation matrix se numeric relation strength check karte hain. Outliers ko identify karte hain. Is stage par analyst questions poochta hai: values kis range me hain, kaunsa group high hai, kaunsa relation strong hai, koi unusual record hai kya?
 
 Data insights EDA ka final storytelling part hai. Students ko ye samjhao ki data scientist ka kaam sirf code run karna nahi hota. Data scientist ko output ko human language me explain karna hota hai. Example: "Average tip around 3 hai" ek statistic hai. "Customers usually small amount tip dete hain, but high bills par tip amount increase hota hai" ek insight hai. Insight report, dashboard, and presentation me use hoti hai.
+
+## Kab Use Hota Hai
+
+EDA har data science project ke starting phase me use hota hai. Jab bhi naya dataset mile, model training se pehle EDA karna chahiye. EDA se pata chalta hai data clean hai ya nahi, missing values hain ya nahi, duplicates hain ya nahi, numeric range sensible hai ya nahi, aur columns useful hain ya nahi.
+
+Data cleaning se pehle EDA use hota hai because cleaning decisions data ko dekhkar hi liye jate hain. Example: missing values fill karni hain ya rows remove karni hain, outliers handle karne hain ya nahi, column type convert karna hai ya nahi. Agar EDA nahi karenge, to cleaning blindly hogi.
+
+Model building se pehle EDA use hota hai because features ka behavior samajhna zaroori hota hai. Example: feature target se related hai kya, feature me outliers hain kya, feature ka distribution skewed hai kya. EDA ke baad feature selection and feature engineering better hoti hai.
+
+Data insights tab use hote hain jab hume result ko non-technical audience ko explain karna ho. Manager, teacher, client, ya business owner ko code nahi chahiye hota; unhe clear statements chahiye hote hain. Example: “Higher table size usually means higher bill” ya “Dinner bills lunch se high hain.”
 
 ## Exploratory Data Analysis Individually
 
@@ -855,6 +895,16 @@ Supervised learning ka meaning yaha clearly connect karo. Model ko sirf hours na
 Linear Regression workflow step by step hota hai. Pehle data load/create karo. Phir feature `X` and target `y` separate karo. Phir train-test split karo. Phir model object create karo. Phir `fit()` se train karo. Phir `predict()` se output nikalo. Phir MAE/MSE/R2 se evaluate karo. Ye sequence students ko repeatedly bolna chahiye because ML projects ka foundation yehi hai.
 
 Students ko `X` and `y` naming convention bhi samjhana chahiye. `X` generally features/input ke liye use hota hai aur 2D DataFrame form me hota hai. `y` generally target/output ke liye use hota hai aur Series form me hota hai. Double brackets `df[["Hours"]]` sklearn ke liye proper 2D structure maintain karte hain.
+
+## Kab Use Hota Hai
+
+Linear Regression tab use hota hai jab target value numeric/continuous ho. Agar output marks, salary, house price, sales amount, rent, temperature, ya demand quantity jaisi numeric value hai, regression approach use hoti hai. Agar output category hai, jaise pass/fail, spam/not spam, yes/no, to Linear Regression nahi, classification algorithm use hota hai.
+
+Linear Regression tab best starting model hota hai jab input aur output ke beech roughly straight-line relation ho. Scatter plot me agar points ek general straight direction follow karte hain, Linear Regression try kar sakte hain. Example: study hours vs marks, experience vs salary, house area vs price.
+
+Linear Regression beginner projects me use hota hai because iska concept simple, output explainable, and training fast hoti hai. Business me bhi ye baseline model ke form me use hota hai. Baseline model ka matlab first simple model jisse hum compare kar sakein ki advanced model actually better perform kar raha hai ya nahi.
+
+Linear Regression avoid ya carefully use karo jab relation highly non-linear ho, data me bahut outliers hon, features highly correlated hon, ya target category type ho. Aise cases me data cleaning, feature engineering, polynomial regression, tree-based models, ya classification algorithms better ho sakte hain.
 
 ## Practical Code
 
@@ -1004,6 +1054,16 @@ Classroom me simple table bana sakte ho: actual marks, predicted marks, differen
 MAE ko daily life example se samjhao. Agar weather app temperature prediction me average 1 degree wrong hota hai, app useful hai. Agar average 10 degree wrong hota hai, app unreliable hai. MSE batata hai ki app kabhi-kabhi very big mistake to nahi kar raha. R2 batata hai ki app temperature pattern ko overall samajh raha hai ya nahi.
 
 Good regression model evaluate karte waqt sirf one metric nahi dekhna chahiye. MAE low hai to average error good hai. MSE low hai to large mistakes kam hain. R2 high hai to model relation explain kar raha hai. Agar metrics weak hain, to hume data cleaning, feature selection, more data, better model, ya feature engineering try karna chahiye.
+
+## Kab Use Hota Hai
+
+MAE tab use hota hai jab hume average prediction error simple words me explain karna ho. Agar audience beginner, business user, teacher, ya client hai, MAE easy metric hota hai. Example: “model average 4 marks ka error kar raha hai” ya “house price model average 50,000 rupees wrong hai.”
+
+MSE tab use hota hai jab large errors ko zyada seriously treat karna ho. Agar business me big mistake costly hai, MSE useful signal deta hai. Example: medical cost prediction, financial risk prediction, high-value house price prediction. MSE large error ko strongly punish karta hai, isliye model ke dangerous mistakes highlight ho sakte hain.
+
+R2 Score tab use hota hai jab hume model ki overall explanation power samajhni ho. Agar R2 high hai, model target variation ko achhe se explain kar raha hai. R2 model comparison me helpful hai, especially jab same dataset par multiple regression models compare kar rahe ho.
+
+Simple selection rule: easy average error explain karna ho to MAE, large mistakes highlight karni ho to MSE, overall model goodness samajhni ho to R2 Score. Best practice ye hai ki regression model evaluate karte waqt teeno metrics ko saath me read karo.
 
 ## MAE Individually
 
